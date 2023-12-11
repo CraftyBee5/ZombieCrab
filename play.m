@@ -1,5 +1,9 @@
 function play ()
 
-fprintf('Test');
+[mapHeight , mapWidth] = drawMap( "Beach.jpg");
+
+pause(5);
+
+close all
 
 endfunction
