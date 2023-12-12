@@ -14,7 +14,11 @@ endfor
 
 charX = 300;
 charY = 150;
-charGraph = drawCapt (charX, charY, -pi/2, 20);
+character = drawCapt (charX, charY, -pi/2, 20);
+
+bX = 100;
+bY = 100;
+bullet = drawBullet (bX, bY, -pi/2, 2);
 
 while (1)
 
@@ -30,27 +34,27 @@ while (1)
   endif
 
   if (cmd == "w")
-    delete(charGraph);
+    delete(character);
     charY -= 10;
-    charGraph = drawCapt (charX, charY, -pi/2, 20);
+    character = drawCapt (charX, charY, -pi/2, 20);
   endif
 
   if (cmd == "a")
-    delete(charGraph);
+    delete(character);
     charX -= 10;
-    charGraph = drawCapt (charX, charY, -pi/2, 20);
+    character = drawCapt (charX, charY, -pi/2, 20);
   endif
 
   if (cmd == "s")
-    delete(charGraph);
+    delete(character);
     charY += 10;
-    charGraph = drawCapt (charX, charY, -pi/2, 20);
+    character = drawCapt (charX, charY, -pi/2, 20);
   endif
 
   if (cmd == "d")
-    delete(charGraph);
+    delete(character);
     charX += 10;
-    charGraph = drawCapt (charX, charY, -pi/2, 20);
+    character = drawCapt (charX, charY, -pi/2, 20);
   endif
 
   %Movement of Crabs
