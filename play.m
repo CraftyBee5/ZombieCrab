@@ -28,6 +28,7 @@ endfor
 
 charX = 300;
 charY = 150;
+<<<<<<< HEAD
 character = drawCapt (charX, charY, -pi/2, 20);
 
 while (1)
@@ -59,6 +60,16 @@ while (1)
       delete(gun1);
     endif
   endif
+=======
+charGraph = drawCapt (charX, charY, -pi/2, 20);
+
+while (1)
+
+  %testing out weapons
+  gun1 = drawGun1 (400, 400, 0, 10);
+  gun2 = drawGun2 (200, 400, 0, 10);
+  sword = drawSword (300, 400, 0, 10);
+>>>>>>> 8e3979f6aa4d4bd578ee7b8b6e828a3b3d0fe5b6
 
   %infoText = text(10, mapHeight - 10, sprintf('Wave %d Lives %d', wave, lives), 'Color', 'white', 'FontSize', 12);
 
@@ -72,27 +83,27 @@ while (1)
   endif
 
   if (cmd == "w")
-    delete(character);
+    delete(charGraph);
     charY -= 10;
-    character = drawCapt (charX, charY, -pi/2, 20);
+    charGraph = drawCapt (charX, charY, -pi/2, 20);
   endif
 
   if (cmd == "a")
-    delete(character);
+    delete(charGraph);
     charX -= 10;
-    character = drawCapt (charX, charY, -pi/2, 20);
+    charGraph = drawCapt (charX, charY, -pi/2, 20);
   endif
 
   if (cmd == "s")
-    delete(character);
+    delete(charGraph);
     charY += 10;
-    character = drawCapt (charX, charY, -pi/2, 20);
+    charGraph = drawCapt (charX, charY, -pi/2, 20);
   endif
 
   if (cmd == "d")
-    delete(character);
+    delete(charGraph);
     charX += 10;
-    character = drawCapt (charX, charY, -pi/2, 20);
+    charGraph = drawCapt (charX, charY, -pi/2, 20);
   endif
 
     if (cmd == " ")
