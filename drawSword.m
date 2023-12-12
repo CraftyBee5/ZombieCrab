@@ -1,17 +1,18 @@
 function [swordGraphics] = drawSword (xSword , ySword , thetaSword , sizeSword)
 
-sword = getSword(sizesword, xsword, ysword, thetasword);
+
+sword = getSword(sizeSword, xSword, ySword, thetaSword);
 % TODO : Rotate sword from zero heading to heading thetasword
 % TODO : Shift the sword from (0 , 0) to (xsword , ysword)
 % Extract the sword points from the sword matrix sword.
 
 % rotate sword
-R = getRotation(thetasword);
+R = getRotation(thetaSword);
 %R = 1;
 swordRotated = R*sword;
 
 % shift sword to new location
-T = getTranslation(xsword,ysword);
+T = getTranslation(xSword,ySword);
 sword = T*swordRotated;
 
 pt1=sword( : , 1);
@@ -27,7 +28,6 @@ pt10=sword( : , 10);
 pt11=sword( : , 11);
 pt12=sword( : , 12);
 pt13=sword( : , 13);
-pt14=sword( : , 14);
 
 % Draw the sword and set the return vector of graphics handles.
 swordGraphics(1) = drawLine(pt1 , pt2 , "k");
