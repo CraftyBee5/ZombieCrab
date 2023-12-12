@@ -102,13 +102,13 @@ function play()
     endif
 
     if (cmd == "s")
-      if (charY < 200)
+      if (charY < 400)
         charY += 10;
       endif
     endif
 
     if (cmd == "d")
-      if (charX < 200)
+      if (charX < 600 - 30)
         charX += 10;
       endif
     endif
