@@ -1,11 +1,11 @@
 function bulletSpeed = equipGun (gunName)
 
   if (gunName == 'pistol')
-    bulletSpeed = 3;
+    bulletSpeed = 10;
   elseif (gunName == 'rifle')
-    bulletSpeed = 5;
+    bulletSpeed = 15;
   elseif (gunName == 'wunderwaffe')
-    bulletSpeed = 5;
+    bulletSpeed = 100;
   endif
 
 endfunction
