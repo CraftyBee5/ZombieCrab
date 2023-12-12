@@ -2,6 +2,7 @@ function play ()
 
 numCrabs = 2;
 wave = 1;
+lives = 10;
 
 [mapHeight , mapWidth] = drawMap( "Beach.jpg");
 
@@ -12,6 +13,8 @@ for i = 1 : numCrabs
 endfor
 
 while (1)
+
+  %infoText = text(10, mapHeight - 10, sprintf('Wave %d Lives %d', wave, lives), 'Color', 'white', 'FontSize', 12);
 
   cmd = kbhit(1);
 
