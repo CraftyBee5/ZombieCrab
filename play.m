@@ -9,7 +9,7 @@ function play()
     pistol = false;
 
     shotsFired = 0;
-    bulletSpeed = 10;
+    bulletSpeed = 8;
 
     g1X = 0;
     g1Y = 0;
@@ -128,7 +128,8 @@ for j = 1:shotsFired
             for i = 1:numCrabs
                 % Check if bullet touches a crab
                 if isgraphics(crabGraph{i}) && norm([bX(j) - xCrab(i), bY(j) - yCrab(i)]) < sizeC(i)
-                    totalCrabsKilled += 1;  % Increment crab defeated count
+                    crabsDefeated += 1;  % Increment crab defeated count
+                    totalCrabsKilled += 1;
                     delete(crabGraph{i});  % Eliminate the crab
                     delete(bullet{j});  % Eliminate the bullet
                 end
@@ -148,7 +149,7 @@ end
         for i = 1:numCrabs
             if isgraphics(crabGraph{i})
                 delete(crabGraph{i});
-                [xCrab(i), yCrab(i), cStep(i)] = moveCrab(xCrab(i), yCrab(i), cStep(i));
+                [xCrab(i), yCrab(i), cStep(i), lives] = moveCrab(xCrab(i), yCrab(i), cStep(i), lives);
                 crabGraph{i} = drawCrab(xCrab(i), yCrab(i), thetaC(i), sizeC(i));
             endif
         endfor
