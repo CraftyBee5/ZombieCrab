@@ -35,6 +35,8 @@ function play()
 
     while (lives > 0)
 
+    commandwindow();
+
         % Check if all crabs are defeated
         if crabsDefeated == numCrabs
             wave += 1;  % Increment the wave
