@@ -20,4 +20,6 @@ pt2=gun( : , 2);
 % Draw the gun and set the return vector of graphics handles.
 gunGraphics(1) = drawLine(pt1 , pt2 , "k");
 
+%bulletHandle = scatter(x, y, size, 'r', 'filled');
+
 endfunction

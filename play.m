@@ -1,143 +1,158 @@
-function play ()
+function play()
+    numCrabs = 2;
+    wave = 1;
+    lives = 10;
+    crabsDefeated = 0;
+    totalCrabsKilled = 0;  % New counter for total crabs killed
 
-numCrabs = 2;
-wave = 1;
-lives = 10;
-crabsDefeated = 3;
+    rifle = false;
+    pistol = false;
 
-rifle = false;
-pistol = false;
+    shotsFired = 0;
+    bulletSpeed = 10;
 
-shotsFired = 0;
-bulletSpeed = 2;
+    g1X = 0;
+    g1Y = 0;
+    g2X = 0;
+    g2Y = 0;
+    bX = zeros(1, 100);  % Preallocate array for bullet X positions
+    bY = zeros(1, 100);  % Preallocate array for bullet Y positions
+    bullet = cell(1, 100);  % Preallocate cell array for bullet graphics handles
 
-g1X = 0;
-g1Y = 0;
-g2X = 0;
-g2Y = 0;
-bX = 0;
-bY = 0;
+    [mapHeight, mapWidth] = drawMap("Beach.jpg");
 
-[mapHeight , mapWidth] = drawMap( "Beach.jpg");
+    % x, y, theta, size, dStep
+    for i = 1:numCrabs
+        [xCrab(i), yCrab(i), thetaC(i), sizeC(i), cStep(i)] = newCrab(wave);
+        crabGraph{i} = drawCrab(xCrab(i), yCrab(i), thetaC(i), sizeC(i));
+    endfor
 
-% x, y, theta, size, dStep
-for i = 1 : numCrabs
-  [xCrab(i), yCrab(i), thetaC(i), sizeC(i), cStep(i)] = newCrab(wave);
-  crabGraph{i} = drawCrab(xCrab(i), yCrab(i), thetaC(i), sizeC(i));
-endfor
+    charX = 300;
+    charY = 150;
+    character = drawCapt(charX, charY, -pi/2, 20);
 
-charX = 300;
-charY = 150;
-%<<<<<<< HEAD
-character = drawCapt (charX, charY, -pi/2, 20);
+    infoText = text(10, mapHeight - 10, sprintf('Wave %d Lives %d Crabs Killed %d', wave, lives, totalCrabsKilled), 'Color', 'white', 'FontSize', 12);
 
-while (1)
+    while (lives > 0)
 
-  if (crabsDefeated >= 2 && !pistol)
-    pistol = true;
-    g2X = randi(400) + 100;
-    g2Y = randi(100) + 200;
-    gun2 = drawGun2 (g2X, g2Y, 0, 10);
-  endif
+        % Check if all crabs are defeated
+        if crabsDefeated == numCrabs
+            wave += 1;  % Increment the wave
+            crabsDefeated = 0;  % Reset crab defeated count
 
-  if ((sqrt((charX - g2X)^2 + ((charY - g2Y)^2))) < 10 && pistol)
-    bulletSpeed = equipGun('pistol');
-    if (isgraphics(gun2))
-      delete(gun2);
-    endif
-  endif
+            % Add a new crab for the next wave
+            numCrabs = numCrabs + 1;
 
-  if (crabsDefeated >= 8 && !rifle)
-    rifle = true
-    g1X = randi(400) + 100;
-    g1Y = randi(100) + 200;
-    gun1 = drawGun1 (g1X, g1Y, 0, 10);
-  endif
+            % Create new crabs for the next wave
+            for i = 1:numCrabs
+                [xCrab(i), yCrab(i), thetaC(i), sizeC(i), cStep(i)] = newCrab(wave);
+                crabGraph{i} = drawCrab(xCrab(i), yCrab(i), thetaC(i), sizeC(i));
+            endfor
+        endif
 
-  if ((sqrt((charX - g1X)^2 + ((charY - g1Y)^2))) < 10 && rifle)
-    bulletSpeed = equipGun('rifle');
-    if (isgraphics(gun1))
-      delete(gun1);
-    endif
-  endif
-=======
-charGraph = drawCapt (charX, charY, -pi/2, 20);
+        if (crabsDefeated >= 2 && ~pistol)
+            pistol = true;
+            g2X = randi(400) + 100;
+            g2Y = randi(100) + 200;
+            gun2 = drawGun2(g2X, g2Y, 0, 10);
+        endif
 
-while (1)
+        if ((sqrt((charX - g2X)^2 + ((charY - g2Y)^2))) < 10 && pistol)
+            bulletSpeed = equipGun('pistol');
+            if (isgraphics(gun2))
+                delete(gun2);
+            endif
+        endif
 
-  %testing out weapons
-  gun1 = drawGun1 (400, 400, 0, 10);
-  gun2 = drawGun2 (200, 400, 0, 10);
-  sword = drawSword (300, 400, 0, 10);
->>>>>>> 8e3979f6aa4d4bd578ee7b8b6e828a3b3d0fe5b6
+        if (crabsDefeated >= 8 && ~rifle)
+            rifle = true;
+            g1X = randi(400) + 100;
+            g1Y = randi(100) + 200;
+            gun1 = drawGun1(g1X, g1Y, 0, 10);
+        endif
 
-  %infoText = text(10, mapHeight - 10, sprintf('Wave %d Lives %d', wave, lives), 'Color', 'white', 'FontSize', 12);
+        if ((sqrt((charX - g1X)^2 + ((charY - g1Y)^2))) < 10 && rifle)
+            bulletSpeed = equipGun('rifle');
+            if (isgraphics(gun1))
+                delete(gun1);
+            endif
+        endif
 
-  cmd = kbhit(0.1);
+        delete(character); % Delete the character before redrawing
+        character = drawCapt(charX, charY, -pi/2, 20);
 
-  commandwindow();
+        cmd = kbhit(0.1);
 
-  if (cmd == "Q")
-    clc
-    break
-  endif
+        if (cmd == "Q")
+            break
+        endif
 
-  if (cmd == "w")
-    delete(charGraph);
-    charY -= 10;
-    charGraph = drawCapt (charX, charY, -pi/2, 20);
-  endif
+        if (cmd == "w")
+            charY -= 10;
+        endif
 
-  if (cmd == "a")
-    delete(charGraph);
-    charX -= 10;
-    charGraph = drawCapt (charX, charY, -pi/2, 20);
-  endif
+        if (cmd == "a")
+            charX -= 10;
+        endif
 
-  if (cmd == "s")
-    delete(charGraph);
-    charY += 10;
-    charGraph = drawCapt (charX, charY, -pi/2, 20);
-  endif
+        if (cmd == "s")
+            charY += 10;
+        endif
 
-  if (cmd == "d")
-    delete(charGraph);
-    charX += 10;
-    charGraph = drawCapt (charX, charY, -pi/2, 20);
-  endif
+        if (cmd == "d")
+            charX += 10;
+        endif
 
-    if (cmd == " ")
-        shotsFired += 1;
-        bX(shotsFired) = charX;
-        bY(shotsFired) = charY;
-    endif
+        % Fire Bullets
+        if (cmd == " ")
+            shotsFired += 1;
+            bX(shotsFired) = charX;
+            bY(shotsFired) = charY;
+            bullet{shotsFired} = drawBullet(bX(shotsFired), bY(shotsFired), -pi/2, 2);
+        endif
 
-    if (shotsFired > 0)
-        for i = 1:shotsFired
-            bY(i) = bY(i) + bulletSpeed; % Move bullets upward
-            bullet{i} = drawBullet(bX(i), bY(i), -pi/2, 2);
+% Move Bullets
+for j = 1:shotsFired
+    if isgraphics(bullet{j})
+        % Check if the bullet is out of the map boundaries
+        if bY(j) > mapHeight
+            delete(bullet{j});
+        else
+            delete(bullet{j});  % Delete the previous bullet
+            bY(j) = bY(j) + bulletSpeed;
+            bullet{j} = drawBullet(bX(j), bY(j), -pi/2, 2);
 
-            % Check if bullet reached the top of the map
-            if bY(i) > mapHeight
-                delete(bullet{i});
+            % Check for bullet and crab collision
+            for i = 1:numCrabs
+                % Check if bullet touches a crab
+                if isgraphics(crabGraph{i}) && norm([bX(j) - xCrab(i), bY(j) - yCrab(i)]) < sizeC(i)
+                    totalCrabsKilled += 1;  % Increment crab defeated count
+                    delete(crabGraph{i});  % Eliminate the crab
+                    delete(bullet{j});  % Eliminate the bullet
+                end
+            end
+        end
+    end
+end
+
+ % Display the total crabs killed count
+ if isgraphics(infoText)
+    delete(infoText);
+end
+
+        infoText = text(10, mapHeight - 10, sprintf('Wave %d Lives %d Crabs Killed %d', wave, lives, totalCrabsKilled), 'Color', 'white', 'FontSize', 12);
+
+        % Move Crabs
+        for i = 1:numCrabs
+            if isgraphics(crabGraph{i})
+                delete(crabGraph{i});
+                [xCrab(i), yCrab(i), cStep(i)] = moveCrab(xCrab(i), yCrab(i), cStep(i));
+                crabGraph{i} = drawCrab(xCrab(i), yCrab(i), thetaC(i), sizeC(i));
             endif
         endfor
-    endif
 
-  %Movement of Crabs
-  for i = 1 : numCrabs
-    if isgraphics(crabGraph{i});
-      delete(crabGraph{i});
-      %Move Crabs Forward
-      [xCrab(i), yCrab(i), cStep(i)] = moveCrab (xCrab(i), yCrab(i), cStep(i));
-      crabGraph{i} = drawCrab(xCrab(i), yCrab(i), thetaC(i), sizeC(i));
-    endif
-  endfor
+        pause(0.01);
+    endwhile
 
-  pause(0.01);
-
-endwhile
-
-close all
-
+    close all
 endfunction
