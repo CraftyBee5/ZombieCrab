@@ -1,6 +1,6 @@
 function [gunGraphics] = drawGun2 (xgun , ygun , thetagun , sizegun)
 
-gun = getgun(sizegun, xgun, ygun, thetagun);
+gun = getGun2(sizegun, xgun, ygun, thetagun);
 % TODO : Rotate gun from zero heading to heading thetagun
 % TODO : Shift the gun from (0 , 0) to (xgun , ygun)
 % Extract the gun points from the gun matrix gun.
