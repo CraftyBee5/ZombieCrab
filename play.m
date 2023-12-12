@@ -20,6 +20,7 @@ while (1)
 
   %testing out weapons
   gun1 = drawGun1 (400, 400, -pi/2, 10);
+  gun2 = drawGun2 (200, 400, -pi/2, 10);
 
   %infoText = text(10, mapHeight - 10, sprintf('Wave %d Lives %d', wave, lives), 'Color', 'white', 'FontSize', 12);
 
