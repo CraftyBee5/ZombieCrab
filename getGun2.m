@@ -1,5 +1,5 @@
 
-function gun1 = getGun2 (gunSize, xGun, yGun, thetaGun)
+function gun2 = getGun2 (gunSize, xGun, yGun, thetaGun)
 
 %left side
 gunPt1 = [0; gunSize; 1];
@@ -17,9 +17,9 @@ gunPt8 = [-gunSize; gunSize; 1]; %right top of head
 gunPt9 = [-gunSize; 2 * gunSize; 1]; %left top of head
 gunPt10 = [0; 2 * gunSize; 1]; %left neck
 
-gunPt10 = [0; 0; 1]; %left neck
+gunPt11 = [0; 0; 1]; %left neck
 
 %gun matrix
-gun = [ gunPt1, gunPt2, gunPt3, gunPt4, gunPt5, gunPt6, gunPt7, gunPt8, gunPt9, gunPt10, gunPt11];
+gun2 = [ gunPt1, gunPt2, gunPt3, gunPt4, gunPt5, gunPt6, gunPt7, gunPt8, gunPt9, gunPt10, gunPt11];
 
 endfunction

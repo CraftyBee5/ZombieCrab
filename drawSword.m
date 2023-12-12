@@ -1,6 +1,6 @@
 function [swordGraphics] = drawSword (xSword , ySword , thetaSword , sizeSword)
 
-sword = getsword(sizesword, xsword, ysword, thetasword);
+sword = getSword(sizesword, xsword, ysword, thetasword);
 % TODO : Rotate sword from zero heading to heading thetasword
 % TODO : Shift the sword from (0 , 0) to (xsword , ysword)
 % Extract the sword points from the sword matrix sword.

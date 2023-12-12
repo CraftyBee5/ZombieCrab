@@ -1,6 +1,6 @@
 function [gunGraphics] = drawGun2 (xgun , ygun , thetagun , sizegun)
 
-gun = getgun(sizegun, xgun, ygun, thetagun);
+gun2 = getGun2(sizegun, xgun, ygun, thetagun);
 % TODO : Rotate gun from zero heading to heading thetagun
 % TODO : Shift the gun from (0 , 0) to (xgun , ygun)
 % Extract the gun points from the gun matrix gun.
@@ -8,23 +8,23 @@ gun = getgun(sizegun, xgun, ygun, thetagun);
 % rotate gun
 R = getRotation(thetagun);
 %R = 1;
-gunRotated = R*gun;
+gunRotated = R*gun2;
 
 % shift gun to new location
 T = getTranslation(xgun,ygun);
-gun = T*gunRotated;
+gun2 = T*gunRotated;
 
-pt1=gun( : , 1);
-pt2=gun( : , 2);
-pt3=gun( : , 3);
-pt4=gun( : , 4);
-pt5=gun( : , 5);
-pt6=gun( : , 6);
-pt7=gun( : , 7);
-pt8=gun( : , 8);
-pt9=gun( : , 9);
-pt10=gun( : , 10);
-pt11=gun( : , 11);
+pt1=gun2( : , 1);
+pt2=gun2( : , 2);
+pt3=gun2( : , 3);
+pt4=gun2( : , 4);
+pt5=gun2( : , 5);
+pt6=gun2( : , 6);
+pt7=gun2( : , 7);
+pt8=gun2( : , 8);
+pt9=gun2( : , 9);
+pt10=gun2( : , 10);
+pt11=gun2( : , 11);
 
 % Draw the gun and set the return vector of graphics handles.
 gunGraphics(1) = drawLine(pt1 , pt2 , "k");
