@@ -1,5 +1,5 @@
 
-function rifle = getGun1 (gunSize, xGun, yGun, thetaGun)
+function gun1 = getGun1 (gunSize, xGun, yGun, thetaGun)
 
 %left side
 gunPt1 = [0; 0; 1];
@@ -24,7 +24,7 @@ gunPt13=[2.5 * gunSize; -0.75 * gunSize; 1]; % spear point
 gunPt14=[2.5 * gunSize; -0.25 * gunSize; 1]; % spear end
 
 
-%gunain matrix
+%gun matrix
 gun = [ gunPt1, gunPt2, gunPt3, gunPt4, gunPt5, gunPt6, gunPt7, gunPt8, gunPt9, gunPt10, gunPt11, gunPt12, gunPt13, gunPt14];
 
 endfunction
