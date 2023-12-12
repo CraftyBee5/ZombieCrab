@@ -28,7 +28,7 @@ endfor
 
 charX = 300;
 charY = 150;
-<<<<<<< HEAD
+%<<<<<<< HEAD
 character = drawCapt (charX, charY, -pi/2, 20);
 
 while (1)
