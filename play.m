@@ -12,17 +12,45 @@ for i = 1 : numCrabs
   crabGraph{i} = drawCrab(xCrab(i), yCrab(i), thetaC(i), sizeC(i));
 endfor
 
+charX = 300;
+charY = 150;
+charGraph = drawCapt (charX, charY, -pi/2, 20);
+
 while (1)
 
   %infoText = text(10, mapHeight - 10, sprintf('Wave %d Lives %d', wave, lives), 'Color', 'white', 'FontSize', 12);
 
-  cmd = kbhit(1);
+  cmd = kbhit(0.1);
 
   commandwindow();
 
   if (cmd == "Q")
     clc
     break
+  endif
+
+  if (cmd == "w")
+    delete(charGraph);
+    charY -= 10;
+    charGraph = drawCapt (charX, charY, -pi/2, 20);
+  endif
+
+  if (cmd == "a")
+    delete(charGraph);
+    charX -= 10;
+    charGraph = drawCapt (charX, charY, -pi/2, 20);
+  endif
+
+  if (cmd == "s")
+    delete(charGraph);
+    charY += 10;
+    charGraph = drawCapt (charX, charY, -pi/2, 20);
+  endif
+
+  if (cmd == "d")
+    delete(charGraph);
+    charX += 10;
+    charGraph = drawCapt (charX, charY, -pi/2, 20);
   endif
 
   %Movement of Crabs

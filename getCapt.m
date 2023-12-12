@@ -12,25 +12,25 @@ function capt = getCapt (captSize, xCapt, yCapt, thetaCapt)
   captPt7 = [ 1.25*captSize; 0.25*captSize; 1]; % left bottom of head
 
   captPt8 = [ captSize; 0; 1]; % center bottom of head
-  
+
   captPt9 = [ 1.5*captSize; -0.75*captSize; 1]; % right top of shoulder
   captPt10 = [ 1.25*captSize; -0.75*captSize; 1]; % right bottom of shoulder
-  
+
   captPt11 = [ 1.5*captSize; 0.75*captSize; 1]; % left top of shoulder
   captPt12 = [ 1.25*captSize; 0.75*captSize; 1]; % left bottom of shoulder
-  
+
   captPt13 = [ captSize; 0.25*captSize; 1]; % left hip
   captPt14 = [ -0.25*captSize; 0.25*captSize; 1]; % right foot
-  
-  captPt15 = [ -0.25*aptSize; 0.15*captSize; 1]; % right foot
+
+  captPt15 = [ -0.25*captSize; 0.15*captSize; 1]; % right foot
   captPt16 = [ captSize; 0.15*captSize; 1]; % inside right hip
-  
+
   captPt17 = [ captSize; 0.15*captSize; 1]; % inside left hip
   captPt18 = [ -0.25*captSize; -0.15*captSize; 1]; % left foot
-  
+
   captPt19 = [ -0.25*captSize; -0.25*captSize; 1]; % left foot
   captPt20 = [ captSize; -0.25*captSize; 1]; % right hip
-  
+
   captPt19 = [ -0.25*captSize; -0.25*captSize; 1]; % left foot
   captPt20 = [ captSize; -0.25*captSize; 1]; % right hip
 
